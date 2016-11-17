@@ -1,0 +1,66 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>ECSHOP 管理中心 - 管理员列表 </title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link href="__CSS__/general.css" rel="stylesheet" type="text/css" />
+<link href="__CSS__/main.css" rel="stylesheet" type="text/css" />
+    <link href="__CSS__/page.css" rel="stylesheet" type="text/css" />
+
+</head>
+<body>
+<h1>
+    <span class="action-span"><a href="{:U('add')}">添加管理员</a></span>
+    <span class="action-span1"><a href="__GROUP__">ECSHOP 管理中心</a></span>
+    <span id="search_id" class="action-span1"> - 管理员列表 </span>
+    <div style="clear:both"></div>
+</h1>
+<div class="form-div">
+    <form method="get" action="{:U()}" name="searchForm">
+        <img src="__IMG__/icon_search.gif" width="26" height="22" border="0" alt="search" />
+        <input type="text" name="name" size="15" value="{:I('get.name')}" />
+        <input type="submit" value=" 搜索 " class="button" />
+    </form>
+</div>
+<!-- 商品列表 -->
+<form method="post" action="" name="listForm" onsubmit="">
+    <div class="list-div" id="listDiv">
+        <table cellpadding="3" cellspacing="1">
+            <tr>
+                <th>管理员</th>
+                <th>Email</th>
+                <th>加入时间</th>
+                <th>最后登录时间</th>
+                <th>最后登录ip</th>
+                <th>操作</th>
+            </tr>
+            <foreach name="admin_list" item="val">
+            <tr>
+                <td align="center"><span>{$val.username}</span></td>
+                <td align="center" ><span>{$val.email}</span></td>
+                <td align="center"><span >{$val.add_time|date="y-m-d H:i:s",###}</span></td>
+                <td align="center"><span>{$val.last_login_time|date="y-m-d H:i:s",###}</span></td>
+                <td align="center"><span>{$val.last_login_ip}</span></td>
+                <td  align="center">
+                    <a href="{:U('edit',array('id'=>$val['id']))}">编辑</a> |
+                    <a href="{:U('delete',array('id'=>$val['id']))}" title="移除" onclick="">移除</a>
+                </td>
+            </tr>
+            </foreach>
+        </table>
+
+    <!-- 分页开始 -->
+        <!-- 分页开始 -->
+        <div class="page">
+            {$page_html}
+        </div>
+        <!-- 分页结束 -->
+    <!-- 分页结束 -->
+    </div>
+</form>
+
+<div id="footer">
+共执行 7 个查询，用时 0.028849 秒，Gzip 已禁用，内存占用 3.219 MB<br />
+版权所有 &copy; 2005-2012 上海商派网络科技有限公司，并保留所有权利。</div>
+</body>
+</html>
